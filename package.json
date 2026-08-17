@@ -1,0 +1,13 @@
+{
+  "name": "rtmp-relay",
+  "version": "1.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "node-media-server": "^2.6.3"
+  }
+}
