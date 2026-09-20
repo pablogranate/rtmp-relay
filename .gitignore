@@ -1,3 +1,4 @@
 node_modules/
 destinations.json
+frontdoor-target.json
 .env
