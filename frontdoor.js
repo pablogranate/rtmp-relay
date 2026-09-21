@@ -112,7 +112,12 @@ code{background:#f0f0f0;padding:.1rem .3rem}
 </style></head>
 <body>
 <h1>RTMP Frontdoor</h1>
-<p>Los streamers apuntan siempre a: <code>rtmp://${PUBLIC_HOST}${PUBLIC_PORT === 1935 || PUBLIC_PORT === 80 ? '' : ':' + PUBLIC_PORT}/...</code></p>
+<p>Cómo cargarlo en OBS / vMix (van en <b>dos campos separados</b>, no todo junto):</p>
+<table style="margin-bottom:1rem">
+<tr><td><b>Server</b></td><td><code>rtmp://${PUBLIC_HOST}${PUBLIC_PORT === 1935 || PUBLIC_PORT === 80 ? '' : ':' + PUBLIC_PORT}/&lt;app&gt;</code></td></tr>
+<tr><td><b>Stream Key</b></td><td><code>&lt;key&gt;</code></td></tr>
+</table>
+<p style="color:#555;font-size:.9em">&lt;app&gt; y &lt;key&gt; son los que te haya dado la plataforma para ese partido (ej: <code>src</code> y <code>live</code>). No van pegados en una sola URL — si los juntás en el campo Server, la key real no llega y del otro lado no se ve la señal.</p>
 <p>Destino actual (a donde se reenvía):</p>
 <form class="target" id="targetForm">
   <input type="text" id="host" placeholder="IP del servidor real (ej: 54.232.6.26)" required>
