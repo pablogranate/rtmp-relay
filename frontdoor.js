@@ -72,6 +72,7 @@ const server = net.createServer((client) => {
 
   const closeBoth = (status) => {
     if (status) entry.status = status;
+    else if (entry.status === 'conectando') entry.status = 'cerrado antes de conectar';
     client.destroy();
     upstream.destroy();
   };
