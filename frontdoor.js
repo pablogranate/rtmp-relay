@@ -10,6 +10,10 @@ const DASH_PASS = process.env.FRONTDOOR_DASH_PASS;
 const LISTEN_PORT = Number(process.env.FRONTDOOR_PORT || 80);
 const LISTEN_HOST = process.env.FRONTDOOR_BIND || '0.0.0.0';
 const DASH_PORT = Number(process.env.FRONTDOOR_DASH_PORT || 8089);
+// IP/puerto que ven los streamers desde afuera — puede no ser LISTEN_HOST/PORT
+// si hay un redirect NAT delante (ej: puerto 80 público -> puerto interno real)
+const PUBLIC_HOST = process.env.FRONTDOOR_PUBLIC_HOST || LISTEN_HOST;
+const PUBLIC_PORT = Number(process.env.FRONTDOOR_PUBLIC_PORT || LISTEN_PORT);
 
 if (!DASH_PASS) {
   console.error('Falta env var: FRONTDOOR_DASH_PASS es obligatoria.');
@@ -108,7 +112,7 @@ code{background:#f0f0f0;padding:.1rem .3rem}
 </style></head>
 <body>
 <h1>RTMP Frontdoor</h1>
-<p>Los streamers apuntan siempre a: <code>rtmp://${LISTEN_HOST === '0.0.0.0' ? req.hostname : LISTEN_HOST}${LISTEN_PORT === 1935 ? '' : ':' + LISTEN_PORT}/...</code></p>
+<p>Los streamers apuntan siempre a: <code>rtmp://${PUBLIC_HOST}${PUBLIC_PORT === 1935 || PUBLIC_PORT === 80 ? '' : ':' + PUBLIC_PORT}/...</code></p>
 <p>Destino actual (a donde se reenvía):</p>
 <form class="target" id="targetForm">
   <input type="text" id="host" placeholder="IP del servidor real (ej: 54.232.6.26)" required>
